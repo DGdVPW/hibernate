@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" package="com.hibernate.model.fruit">    <!-- 导入包 -->
+
+    <class name="Fruit" table="Fruit"> <!-- 表名 -->
+        <id name="id">    <!-- 主键 -->                        
+            <generator class="assigned"/><!-- 如果主键是自增长改为class="native" -->
+        </id>
+        <!-- 对应的各个字段名 -->
+        <property name="name"    />
+        <property name="price"   />
+        <property name="source"  /> 
+        <property name="numbers" />
+        <property name="image"   />
+    </class>   
+     <!-- 定义查询语句 -->  
+    <query name="findFruitByName">  
+    	<![CDATA[from Fruit where name = :name]]>  
+    </query>  
+    
+    <!-- 定义原生SQL查询语句 -->  
+   <sql-query name="findFruitById">  
+        <return alias="s" class="com.hibernate.model.fruit.Fruit">     
+        </return>  
+        <![CDATA[select {s.*} from Fruit s where s.id = :id]]>  
+   </sql-query>   
+   <!-- 定义查询部分字段SQL语句 要指定类型 -->      
+    <sql-query name="findFruitByIds">  
+        <return-scalar column="name" type="string"/>  
+        <return-scalar column="id" type="string"/>      
+        <![CDATA[select s.id, s.name from Fruit s where s.id = :id]]>  
+    </sql-query>      
+</hibernate-mapping>

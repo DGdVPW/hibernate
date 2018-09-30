@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> <!-- 数据库方言 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property><!-- 引用jdbc包 -->
+        <property name="hibernate.connection.username">myy</property>
+        <property name="hibernate.connection.password">myy</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/hibernate?characterEncoding=UTF8</property>
+        <property name="show_sql">true</property> <!-- true 执行完在控制台打印SQL语句 -->
+            <!-- 表映射加载  -->
+        <mapping resource="com/hibernate/model/fruit/Fruit.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>
